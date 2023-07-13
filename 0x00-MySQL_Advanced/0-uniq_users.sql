@@ -1,4 +1,4 @@
--- SQL script that creates a table users
+-- SQL script that creates a table for users
 -- script can be excuted on any databases
 CREATE TABLE if NOT EXISTS `users` (
        `id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
