@@ -95,3 +95,12 @@ This project contains tasks for learning to use the MongoDB NoSQL database appli
 
 + [x] 15. **Log stats - new version**<br/>[102-log_stats.py](102-log_stats.py) improves [12-log_stats.py](12-log_stats.py) by adding the top 10 of the most present IPs in the collection `nginx` of the database `logs`:
   + The top 10 IPs must be sorted.
+
+## Resources
+* [NoSql Database](https://riak.com/resources/nosql-databases/)
+* [NoSQl Explained](https://www.youtube.com/watch?v=qUV2j3XBRHc)
+* [MongoDB with Python](https://www.youtube.com/watch?v=E-1xI85Zog8)
+* [MongoDB with python contd: Update, Insert and Query](https://www.youtube.com/watch?v=CB9G5Dvv-EE)
+* [Aggregation](https://www.mongodb.com/docs/manual/aggregation/)
+* [Introduction-to-mongodb-and-python](https://realpython.com/introduction-to-mongodb-and-python/)
+* [MongoDB shell methods](https://www.mongodb.com/docs/manual/reference/method/)
