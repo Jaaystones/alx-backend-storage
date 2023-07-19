@@ -6,66 +6,31 @@ import requests
 import redis
 from functools import wraps
 
+store = redis.Redis()
 
-def count_and_cache_calls(fn):
-    """
-    Decorator to track the number of times a URL is 
-    accessed and cache the result.
 
-    Args:
-        fn (Callable): The function to be wrapped.
-
-    Returns:
-        Callable: The wrapped function.
-    """
-    @wraps(fn)
+def count_and_cache_calls(method):
+    """ Decorator counting how many times
+    a URL is accessed """
+    @wraps(method)
     def wrapper(url):
-        """
-        Wrapped function that tracks the URL access
-        count and caches the result.
+        cached_key = "cached:" + url
+        cached_data = store.get(cached_key)
+        if cached_data:
+            return cached_data.decode("utf-8")
 
-        Args:
-            url (str): The URL to fetch the HTML content.
+        count_key = "count:" + url
+        html = method(url)
 
-        Returns:
-            str: The HTML content of the URL.
-        """
-        # Create a Redis client
-        r = redis.Redis(host='localhost', port=6379, db=0)
-
-        # Increment the count of the URL accessed
-        count_key = f"count:{url}"
-        r.incr(count_key)
-
-        # Get the cached HTML content if available
-        cached_content = r.get(url)
-        if cached_content:
-            return cached_content.decode('utf-8')
-
-        # Call the original function
-        content = fn(url)
-
-        # Cache the HTML content with a 10-second expiration time
-        r.setex(url, 10, content)
-        return content
-
+        store.incr(count_key)
+        store.set(cached_key, html)
+        store.expire(cached_key, 10)
+        return html
     return wrapper
 
 
 @count_and_cache_calls
 def get_page(url: str) -> str:
-    """
-    Fetches the HTML content of the specified URL.
-
-    Args:
-        url (str): The URL to fetch the HTML content.
-
-    Returns:
-        str: The HTML content of the URL.
-    """
-    # Fetch the HTML content using requests
-    response = requests.get(url)
-    if response.status_code == 200:
-        return response.text
-
-    return ""  
+    """ Returns HTML content of a url """
+    res = requests.get(url)
+    return res.text
