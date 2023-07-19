@@ -72,3 +72,9 @@ This project contains tasks for learning to use the Redis NoSQL data storage app
   + Inside `get_page` track how many times a particular URL was accessed in the key `"count:{url}"` and cache the result with an expiration time of 10 seconds.
   + **Tip**: Use [http://slowwly.robertomurray.co.uk](http://slowwly.robertomurray.co.uk) to simulate a slow response and test your caching.
   + **Bonus**: implement this use case with decorators.
+
+## Resources📚
+* [Redis Commands](https://redis.io/commands/)
+* [Redis Python Client](https://redis-py.readthedocs.io/en/stable/)
+* [How To Use Redis With Python](https://realpython.com/python-redis/)
+* [Redis Crash Course Tutorials](https://www.youtube.com/watch?v=Hbt56gFj998)
