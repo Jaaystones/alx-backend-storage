@@ -1,3 +1,5 @@
+<img align="center" alt="Coding" width="450" height="400" src=https://github.com/Jaaystones/alx-backend-storage/assets/111044396/4d024975-51eb-4ef4-83d6-47d349c99af2>
+
 # Redis basic
 
 This project contains tasks for learning to use the Redis NoSQL data storage application through Python3.
