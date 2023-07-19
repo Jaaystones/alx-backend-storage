@@ -9,7 +9,8 @@ from functools import wraps
 
 def count_and_cache_calls(fn):
     """
-    Decorator to track the number of times a URL is accessed and cache the result.
+    Decorator to track the number of times a URL is 
+    accessed and cache the result.
 
     Args:
         fn (Callable): The function to be wrapped.
@@ -20,7 +21,8 @@ def count_and_cache_calls(fn):
     @wraps(fn)
     def wrapper(url):
         """
-        Wrapped function that tracks the URL access count and caches the result.
+        Wrapped function that tracks the URL access
+        count and caches the result.
 
         Args:
             url (str): The URL to fetch the HTML content.
@@ -66,4 +68,4 @@ def get_page(url: str) -> str:
     if response.status_code == 200:
         return response.text
 
-    return ""  # Return an empty string if the request fails or the URL is not accessible
+    return ""  
