@@ -4,12 +4,30 @@ web cache and tracker
 """
 import requests
 import redis
-import time
 from functools import wraps
 
+
 def count_and_cache_calls(fn):
+    """
+    Decorator to track the number of times a URL is accessed and cache the result.
+
+    Args:
+        fn (Callable): The function to be wrapped.
+
+    Returns:
+        Callable: The wrapped function.
+    """
     @wraps(fn)
     def wrapper(url):
+        """
+        Wrapped function that tracks the URL access count and caches the result.
+
+        Args:
+            url (str): The URL to fetch the HTML content.
+
+        Returns:
+            str: The HTML content of the URL.
+        """
         # Create a Redis client
         r = redis.Redis(host='localhost', port=6379, db=0)
 
@@ -31,8 +49,18 @@ def count_and_cache_calls(fn):
 
     return wrapper
 
+
 @count_and_cache_calls
 def get_page(url: str) -> str:
+    """
+    Fetches the HTML content of the specified URL.
+
+    Args:
+        url (str): The URL to fetch the HTML content.
+
+    Returns:
+        str: The HTML content of the URL.
+    """
     # Fetch the HTML content using requests
     response = requests.get(url)
     if response.status_code == 200:
